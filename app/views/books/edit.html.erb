@@ -1,30 +1,48 @@
-  <h1>Editing Book</h1>
+<html>
+  <head>
 
-  <div class="text-success">
-  <%= flash[:notice] %>
-  </div>
+  </head>
+
+  <body>
+    <div class="text-success">
+    <%= flash[:notice] %>
+    </div>
+
+    <h1>Editing Book</h1>
 
     <% if @book.errors.any? %>
-      <%= @book.errors.count %>件のエラーが発生しました
-      <ul>
+    　<div id="error_explanation">
+        <h3><%= @book.errors.count %>errors prohibited this book from being saved:</h3>
+        <ul>
         <% @book.errors.full_messages.each do |message| %>
           <li><%= message %></li>
         <% end %>
-      </ul>
+        </ul>
+      </div>
     <% end %>
 
- <%= form_with model: @book, url: book_path(@book.id), method: :patch do |f| %>
+    <div class="form">
+    <%= form_with model: @book, url: book_path(@book.id), method: :patch do |f| %>
+
+      <div class="field">
+        <label for="book-title">Title</label>
+        <div class="text-field"><%= f.text_field :title %></div>
+      </div>
+
+      <div class="field">
+        <label for="book-body">Body</label>
+        <div class="text-body"><%= f.text_area :body %></div>
+      </div>
+
+      <div class="action">
+      <%= f.submit 'Update Book' %>
+      </div>
+
+      <a><%= link_to "Show", book_path(@book.id) %></a>
+      <a><%= link_to 'Back', books_path(@book.id) %></a>
 
 
-   <h4>Title</h4>
-   <%= f.text_field :title %>
-
-   <h4>Body</h4>
-   <%= f.text_area :body %>
-   <%= f.submit 'Update Book' %>
-
-   <%= link_to 'Back', books_path(@book.id) %>
-   <%= link_to "Show", book_path(@book.id) %>
-
-
-  <% end %>
+    <% end %>
+    </div>
+  </body>
+</html>
