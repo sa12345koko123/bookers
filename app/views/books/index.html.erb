@@ -30,7 +30,6 @@
 
 
     <h2>New Book</h2>
-
     <% if @book.errors.any? %>
       <%= @book.errors.count %>件のエラーが発生しました
       <ul>
@@ -39,16 +38,17 @@
         <% end %>
       </ul>
     <% end %>
+    
+    <%= form_with model: @book, url: '/books', method: :post do |f| %>
+      
+    <h4>titel</h4>
+    <%= f.text_field :title %>
 
-      <%= form_with model: @book, url: '/books', method: :post do |f| %>
-      <h4>titel</h4>
-      <%= f.text_field :title %>
+    <h4>body</h4>
+    <%= f.text_area :body %>
 
-      <h4>body</h4>
-      <%= f.text_area :body %>
-
-      <%= f.submit 'Creste Book' %>
-      <% end %>
+     <%= f.submit 'Creste Book' %>
+    <% end %>
 
 
   </body>
