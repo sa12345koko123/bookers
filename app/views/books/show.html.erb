@@ -16,9 +16,10 @@
       <%= @book.body %>
     </p>
     
-  
-    <a><%= link_to "Edit", edit_book_path(@book.id) %></a>
-    <a><%= link_to 'Back', books_path(@book.id) %></a>
+    <div class="wrap">
+      <div class="box-a"><%= link_to "Edit", edit_book_path(@book.id) %></div>
+      <div class="box-b"><%= link_to 'Back', books_path %></div>
+    </div>
     
    </body> 
 </html>
